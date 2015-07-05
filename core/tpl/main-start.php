@@ -3,13 +3,13 @@
 <head>
 <title>管理端顶级视图</title>
 
-<script type="text/javascript" src="<?php printf(APPROOT.JQUERY_LIB_PATH); ?>"></script>
-<script type="text/javascript" src="res/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="res/js/util.js"></script>
-<script type="text/javascript" src="res/js/Admin-admin.js"></script>
-<link href="res/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="res/bootstrap/js/bootstrap-popover.js"></script>
-<link href="res/css/Admin-admin.css" rel="stylesheet" type="text/css" />
+<script src="//cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./res/biz/common/util.js"></script>
+<script type="text/javascript" src="./res/biz/panel/panel.js"></script>
+<link href="//cdn.bootcss.com/bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="//cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap-popover.min.js"></script>
+<link href="./res/biz/panel/panel.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body bgcolor="#f9f9f9">
@@ -78,7 +78,7 @@
   			<li>第四的名称层 <span class="divider">/</span></li>
   			<li>第五层的名称</li>-->
             <?php 
-            $args = ActionUtil::getTplArgs();
+            //从此处开始使用$this->args
             printf($args['pathnavyHTML']);
             ?>
 		</ul><!-- . breadcrumb -->
