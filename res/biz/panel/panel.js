@@ -128,7 +128,7 @@ function click_closed_li(obj){
     var id = obj.getAttribute("id");
     var parent = document.getElementById("li_"+id);
     parent.setAttribute("class", "opened");
-    $.post('./', {xxx:id}, function(data){
+    $.post('./?access/access', {ids:id}, function(data){
         var innerr = parent.innerHTML + data;
         parent.innerHTML = innerr;
     });

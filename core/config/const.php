@@ -24,3 +24,5 @@ define('FILE_ELEMENT_NAME_IN_GLOBAL_FILE', 'file');
 define('MAX_SIZE_ON_DOWNLOAD', 629145600);	//这里限制 300 MB（暂时改为，原值314572800）
 //如遇到name属性值为空的节点，则需要自动为其命名。命名规则：【常量字串+时间戳】
 define('NAME_VALUE_PREFIX_OF_NODE_ATTR', '未命名');
+//当前的ids，用于XML查找文件树
+define('FMT_IDS', 'ids');
