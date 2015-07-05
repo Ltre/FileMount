@@ -4,7 +4,7 @@ class DIUrlShell {
     /**
      * 默认命令
      */
-    static $_default_shell = 'test/start';
+    static $_default_shell = 'main/start';
     
     /**
      * 严格模式启用时：
