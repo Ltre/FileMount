@@ -25,13 +25,13 @@ class DIFilterMap {
 	
 		return array(
 			//过滤器名(免Filter后缀) => array(作用域)
-			'Xxx'	=> array(
+			/* 'Xxx'	=> array(
 				'Test/test', //Do方法
 				'Test/lets', //Do方法
 			),
 		    'Yyy' => array(
 				'Test/test',//Do方法
-			),
+			), */
 		);
 	
 	}
@@ -45,8 +45,8 @@ class DIFilterMap {
 		return array(
 			//过滤器名(免Filter后缀) => array(作用域)
 			'Xxx'	=> array(
-				'Testtest',	//Do模块
-				'Test/start', //Do方法
+				/* 'Testtest',	//Do模块
+				'Test/start', //Do方法 */
 			),
 		);
 		
@@ -62,8 +62,8 @@ class DIFilterMap {
 	static function getSpecialFilterSort(){
 	    return array(
 	    	'Test/test' => array(
-                'Yyy',
-                'Xxx', 
+                /* 'Yyy',
+                'Xxx',  */
 	       ),
 	    );
 	}
@@ -76,8 +76,8 @@ class DIFilterMap {
 	 */
 	static function getDefaultFilterSort(){
 	    return array(
-	    	'Xxx',
-	        'Yyy',
+	    	/* 'Xxx',
+	        'Yyy', */
 	    );
 	}
 	
@@ -94,9 +94,9 @@ class DIFilterMap {
 	 */
 	static function getGlobalFilters(){
 	    return array(
-	    	'Global1' => array('Test/start', 'Test/shell'),
+	    	/* 'Global1' => array('Test/start', 'Test/shell'),
 	        'Global2' => array('Test/start', 'Test/shell', 'Test/test', 'Test/lets'),
-	        'Global3' => array('Test/start', 'Test/shell', 'Testtest'),
+	        'Global3' => array('Test/start', 'Test/shell', 'Testtest'), */
 	    );
 	}
 	

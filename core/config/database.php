@@ -8,184 +8,41 @@ $hostname = substr( ($h = $_SERVER['HTTP_HOST']), 0, (false !== ($pos = strpos($
 if (in_array($hostname, array(
     '127.0.0.1',
     'localhost',
-    'doinject.me',//绑定本地HOSTS
+    'filemount.dev',//绑定本地HOSTS
 ))){
 	
     class DIDBConfig {
         static $driver = 'DIMySQL';//驱动类
         static $host = '127.0.0.1';
         static $port = 3306;
-        static $db = 'doinject';
-        static $user = 'root';
-        static $pwd = 'ltre';
-        static $table_prefix = 'di_';//表前缀
+        static $db = 'filemount';
+        static $user = 'filemount';
+        static $pwd = 'filemount';
+        static $table_prefix = 'fmt_';//表前缀
     }
     class DIMMCConfig {
-        static $domain = 'doinject';
+        static $domain = 'filemount';
         static $host = '127.0.0.1';
         static $port = 11211;
     }
     
-} elseif (in_array($hostname, array(
-	'di.webdev.duowan.com'
+} elseif(in_array($hostname, array(
+	'file.larele.com'
 ))) {
     
     class DIDBConfig {
         static $driver = 'DIMySQL';//驱动类
-        static $host = '172.16.43.111';
+        static $host = '127.0.0.1';
         static $port = 3306;
-        static $db = 'doinject';
-        static $user = 'doinject';
-        static $pwd = 'doinject';
-        static $table_prefix = 'di_';//表前缀
+        static $db = 'filemount';
+        static $user = 'filemount';
+        static $pwd = '71f17c2521448e961c4c62c2111f7f391e3b61a1';//m+s
+        static $table_prefix = 'fmt_';//表前缀
     }
     class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-    
-} elseif (in_array($hostname, array(
-	'ltre.xyz'
-))) {
-    
-    class DIDBConfig {
-        static $driver;//驱动类
-        static $host;
-        static $port;
-        static $db;
-        static $user;
-        static $pwd;
-        static $table_prefix;//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-    
-} elseif (in_array($hostname, array(
-    'doinject.sinaapp.com',
-))) {
-    
-    class DIDBConfig {
-        static $driver;//驱动类
-        static $host;
-        static $port;
-        static $db;
-        static $user;
-        static $pwd;
-        static $table_prefix;//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-    
-} elseif (in_array($hostname, array(
-    'doinject.duapp.com',
-))) {
-    
-    class DIDBConfig {
-        static $driver;//驱动类
-        static $host;
-        static $port;
-        static $db;
-        static $user;
-        static $pwd;
-        static $table_prefix;//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-    
-} elseif (in_array($hostname, array(
-    'www.ltre.cc',
-    'ltre.cc',
-    'www.xmiku.cc',
-    'xmiku.cc',
-    'www.larele.com',
-    'larele.com',
-))) {
-    
-    class DIDBConfig {
-        static $driver = 'DIMySQL';//驱动类
-        static $host = 'localhost';
-        static $port = 3306;
-        static $db = MYSQL_DATABASE;
-        static $user = MYSQL_USERNAME;
-        static $pwd = MYSQL_PASSWORD;
-        static $table_prefix;//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-    
-} elseif (in_array($hostname, array(
-    'ltre.me',
-    'www.ltre.me',
-    'me.ltre.me',
-))) {
-    
-    class DIDBConfig {
-        static $driver = 'DIMySQL';//驱动类
-        static $host = 'localhost';
-        static $port = 3306;
-        static $db = 'ltreme_doinject';
-        static $user = 'ltreme_doinject';
-        static $pwd = 'aiyowocao';
-        static $table_prefix = 'di_';//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-    
-} else if (in_array($hostname, array(
-	'emiku.cc',
-    'www.emiku.cc',
-    'innertest.emiku.cc'
-))) {
-    
-    class DIDBConfig {
-        static $driver = 'DIMySQL';//驱动类
-        static $host = 'localhost';
-        static $port = 3306;
-        static $db = 'emikucc_doinject';
-        static $user = 'emikucc_doinject';
-        static $pwd = 'aiyowocao';
-        static $table_prefix = 'di_';//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
-    }
-
-} elseif (in_array($hostname, array(
-	'miku.us', //恒创主机 - 香港PHP-300M体验型xmikucc域名更改为miku.us
-    'www.miku.us',
-))) {
-    
-    class DIDBConfig {
-        static $driver = 'DIMySQL';//驱动类
-        static $host = 'localhost';
-        static $port = 3306;
-        static $db = 'xmikucc_doinject';
-        static $user = 'xmikucc_doinject';
-        static $pwd = 'aiyowocao';
-        static $table_prefix = 'di_';//表前缀
-    }
-    class DIMMCConfig {
-        static $domain = 'doinject';
-        static $host;
-        static $port;
+        static $domain = 'filemount';
+        static $host = '127.0.0.1';
+        static $port = 11211;
     }
     
 } else {

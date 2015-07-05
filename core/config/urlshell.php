@@ -79,7 +79,7 @@ class DIUrlShell {
     //ROUTE别名 => 真实ROUTE值，支持任意通配符，不区分大小写，匹配优先级以最小数组索引值为最高。由于存在BUG，禁止在配置左侧时仅使用通配符，如“'<X>' => '<X>/start'”，若有需要，请配置具体的，如'fm'=>'fm/start'
     static function alias(){
         return array(
-            'alia' => 'test/alias',
+            'main' => 'main/start',
             '<X>/list' => '<X>/getlist',
         );
     }

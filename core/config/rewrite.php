@@ -8,11 +8,8 @@ class DIRouteRewrite {
      *      DIRoute::rewrite() @ __route.php
      */
     static $rulesMap = array(
-        '://danmucopy.me' => 'danmu/search', //含有域名的配置最好放在最前面(经验之谈)
-        '://fm.danmu.me' => 'fm/start', //二级域名要优先于顶级域名
-        '://danmu.me' => 'danmu/start',//注意：这几行对域名的配置会将DIUrlShell::$_default_shell覆盖
-        '://larele.com' => 'danmu/search',
-        '://iio.ooo' => 'fm/start',
+        '://filemount.larele.com' => 'main/start', //含有域名的配置最好放在最前面(经验之谈),二级域名要优先于顶级域名,注意DiUrlShell::$_default_shell的覆盖问题
+        '://filemount.dev' => 'main/start',
         
         's' => 'shell.shell',
         's.html' => 'shell.shell',
@@ -21,8 +18,6 @@ class DIRouteRewrite {
         '<D>.htm' => '<D>/start',
         '<D>.html' => '<D>/start',
         
-        '<nums>' => 'test/start/<nums>',
-    	
         '<D>/<F>' => '<D>/<F>',
         '<D>-<F>' => '<D>/<F>',
         '<A>.<B>' => '<A>.<B>',
