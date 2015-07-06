@@ -1,4 +1,4 @@
-Apache:
+Apache HP PC:
 
 NameVirtualHost filemount.dev:80
 <VirtualHost *:80>
@@ -7,7 +7,22 @@ NameVirtualHost filemount.dev:80
 </VirtualHost>
 
 
-Nginx:
+--------------------------------------------------------------
+
+Apache Company PC:
+
+NameVirtualHost filemount.dev:80
+<VirtualHost filemount.dev:80>
+	ServerAdmin webmaster@filemount.dev
+    DocumentRoot "d:/SERV_WORKSPACE/pub/filemount"
+    ServerName filemount.dev
+    ErrorLog "logs/filemount.dev-error.log"
+    CustomLog "logs/filemount.dev-access.log" common
+</VirtualHost>
+
+--------------------------------------------------------------
+
+Nginx Linode Tokyo:
 
 server {
 listen 80;
