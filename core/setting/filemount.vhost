@@ -1,5 +1,6 @@
 Apache:
 
+NameVirtualHost filemount.dev:80
 <VirtualHost *:80>
 	DocumentRoot E:/InstalledApp/Zend/Apache2/htdocs/FileMount
 	ServerName filemount.dev

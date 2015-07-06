@@ -26,8 +26,27 @@ if (in_array($hostname, array(
         static $port = 11211;
     }
     
+} elseif (in_array($hostname, array(
+	'filemount.webdev.duowan.com',
+))) {
+	
+    class DIDBConfig {
+        static $driver = 'DIMySQL';//驱动类
+        static $host = '172.16.43.111';
+        static $port = 3306;
+        static $db = 'filemount';
+        static $user = 'filemount';
+        static $pwd = 'filemount';
+        static $table_prefix = 'fmt_';//表前缀
+    }
+    class DIMMCConfig {
+        static $domain = 'filemount';
+        static $host = '127.0.0.1';
+        static $port = 11211;
+    }
+    
 } elseif(in_array($hostname, array(
-	'file.larele.com'
+	'file.larele.com',
 ))) {
     
     class DIDBConfig {
