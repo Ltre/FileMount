@@ -94,6 +94,7 @@ class DIFilterMap {
 	 */
 	static function getGlobalFilters(){
 	    return array(
+	        'Ids' => array(),
 	    	/* 'Global1' => array('Test/start', 'Test/shell'),
 	        'Global2' => array('Test/start', 'Test/shell', 'Test/test', 'Test/lets'),
 	        'Global3' => array('Test/start', 'Test/shell', 'Testtest'), */

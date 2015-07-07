@@ -134,4 +134,63 @@ class Util_ {
 		}
 		return false;	//不是
 	}
+	
+	
+	/**
+	 * 判断是否符合id串的形式【x】或【x-x】或【x-x-...-x】，X是任意位数
+	 * 返回：id数组，如果符合；null，如果不符合。
+	 */
+	public static function isIdsFormat($str){
+	    if(! preg_match ( '/^\d[(\|\d|\d)]*\d$|^\d$/', $str))
+	        return null;
+	    $ids = explode('|', $str);
+	    foreach ($ids as $id){
+	        if($id == null){
+	            return null;
+	        }
+	    }
+	    return $ids;
+	}
+	/**
+	 * 是id数组每一项整型化
+	 * 返回，整型化数组
+	 */
+	public static function intval_id_array($id_array){
+	    if (is_array($id_array)) {
+    	    foreach ($id_array as $i=>$id){
+    	        $id_array[$i] = $id = intval($id);
+    	    }
+	    }
+	    return $id_array;
+	}
+	/**
+	 * 终极修正id数组：
+	 * 如果第一项是0，则删除该项
+	 * 判断后续是否存在“零”项。
+	 * 参数：不含null项的id数组
+	 * 返回情况：
+	 * 	1、原数组（如果没有一项是零，或者长度为一的数组）
+	 * 	2、去除第一项的数组（如果第一项是零，且长度大于一）
+	 *  3、null（如果除了第一项以外，还存在“零”项；数组长度小于等于0时）
+	 */
+	public static function hasZeroInFollowUpOfIds($id_array){
+	    $len = count($id_array);
+	    $id_array = self::intval_id_array($id_array);//先整型化id数组
+	    if($len == 1){
+	        return $id_array;
+	    }else if($len > 1){
+	        foreach ($id_array as $i=>$id){
+	            if($id==0){
+	                if($i!=0)
+	                    return null;
+	            }
+	        }
+	        if($id_array[0] == 0){
+	            return array_slice($id_array, 1);
+	        }
+	        else
+	            return $id_array;
+	    }
+	}
+	
 }

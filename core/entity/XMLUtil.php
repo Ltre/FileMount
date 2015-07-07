@@ -280,7 +280,7 @@ class XMLUtil extends DOMDocument {
 		$contentHTML = '';
 		$pre_id = '';//如果父节点不是根元素，则要给出上几层目录经过的id串。
 		if( strcasecmp(ROOT_ELEMENT_NAME_IN_GLOBAL_FILE, $pnode->nodeName) )
-			$pre_id = implode('|', DIRuntime::getItem(FMT_IDS)).'|' ; //上层所经目录的所有id
+			$pre_id = implode('|', arg('ids')).'|' ; //上层所经目录的所有id
 		$i = 1 ;
 		foreach ($elements as $ele){
 			foreach (array('nodeName','id','name','type','items') as $v)

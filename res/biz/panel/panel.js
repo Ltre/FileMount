@@ -37,8 +37,8 @@ var $parent_id = 0; //记录所进目录的id
 //加载目录中的内容到#right_content区域
 function loadContentFromDirToRightContent( id ){
     $.post(
-        './', 
-        {xxx:"accessDirToContentHTML|"+id}, 
+        './?access/accessDirToContentHTML', 
+        {ids:id}, 
         function(data){
         var rc = document.getElementById("right_content");
         rc.innerHTML = data;
@@ -100,8 +100,8 @@ function showTheHrefWhereChoosing( id ){
 //更新#url区域的路径导航
 function updatePathNavy( id ){
     $.post(
-    './', 
-    {xxx:"updatePathNavyInAdminViewFormIdArray|"+id},
+    './?access/updatePathNavyInAdminViewFormIdArray', 
+    {ids:id},
     function(data){
         document.getElementById("url").getElementsByTagName("ul").item(0).innerHTML = data;
     });
@@ -224,7 +224,7 @@ function createDir(sh, na, sr, ty, id){
     var ids = id;
     if(''==name||''==src)
         return false;
-    $.post('./', {xxx:shell+"|"+name+"|"+src+"|"+type+"|"+ids}, function(data){
+    $.post('./?'+shell, {name:name, src:src, type:type, ids:ids}, function(data){
         //捕获添加目录时产生的错误
         if( -1 != data.indexOf("@ErrorAction") ){
             data = data.slice(0, data.length-12);
@@ -238,18 +238,18 @@ function createDir(sh, na, sr, ty, id){
 }
 
 function click_createRealDir( obj ){
-    createDir('dirdir', document.getElementById("dirdir_newname").value, document.getElementById("dirdir_realdir").value, 'real', document.getElementById("current_dir_id").value);
+    createDir('dir/dirdir', document.getElementById("dirdir_newname").value, document.getElementById("dirdir_realdir").value, 'real', document.getElementById("current_dir_id").value);
 }
 
 function click_createVirtualDir( obj ){
-    createDir('empdir', document.getElementById("empdir_newname").value, '.nomedia', 'virtual', document.getElementById("current_dir_id").value);
+    createDir('dir/empdir', document.getElementById("empdir_newname").value, '.nomedia', 'virtual', document.getElementById("current_dir_id").value);
 }
 
 /*********************分割线***********************/
 
 //发送“移除目录”的请求
 function rmdir(){
-    $.post('./', {xxx:"rmdir|"+$selected_id}, function(data){
+    $.post('./?dir/rmdir', {ids:$selected_id}, function(data){
         if( -1 != data.indexOf("@ErrorAction") ){
             data = data.slice(0, data.length-12);
             document.getElementById("erroraction_msg").innerHTML = data;
@@ -274,7 +274,7 @@ function click_rmdir(){
 
 //处理“从文件添加文件请求”
 function filefile(dn, lp, pid){
-    $.post('./', {xxx:'filefile|'+dn+'|'+lp+'|'+pid}, function(data){
+    $.post('./?file/filefile', {display_name:dn, realpath:lp, parentid:pid}, function(data){
         //捕获添加目录时产生的错误
         if( -1 != data.indexOf("@ErrorAction") ){
             data = data.slice(0, data.length-12);

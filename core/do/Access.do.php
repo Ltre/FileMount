@@ -33,7 +33,7 @@ class AccessDo extends DIDo{
 			ErrorTips::url_param_doesnt_fit_the_shell("Access->access()");
 			die;
 		} */
-	    $ids = explode('|', arg('ids'));
+	    $ids = arg('ids');
 	    DIRuntime::addItem(FMT_IDS, $ids);
 		self::analyseIdArrayToDirOrFile($ids);
 	}
@@ -99,8 +99,8 @@ class AccessDo extends DIDo{
 	 * 已注册URL指令：accessDirToContentHTML
 	 * 参数要求：DIRuntime::getItem(FMT_IDS)
 	 */
-	public function accessDirToContentHTML($urlInfo){
-		$ids = DIRuntime::getItem(FMT_IDS);
+	public function accessDirToContentHTML(){
+		$ids = arg('ids');
 		$xml = new XMLUtil("1.0", "UTF-8");
 		$root = $xml->loadGlobalAndGetRootElement();
 		$node = $xml->getElementByIdArray($ids, $root);
@@ -121,8 +121,8 @@ class AccessDo extends DIDo{
 	 * 使用场合：AJAX更新
 	 * 备注：已注册指令：updatePathNavyInAdminViewFormIdArray
 	 */
-	public function updatePathNavyInAdminViewFormIdArray($urlInfo){
-		$ids = DIRuntime::getItem(FMT_IDS);
+	public function updatePathNavyInAdminViewFormIdArray(){
+		$ids = arg('ids');
 		$xml = new XMLUtil("1.0", "UTF-8");
 		$root = $xml->loadGlobalAndGetRootElement();
 		$HTML = '';
