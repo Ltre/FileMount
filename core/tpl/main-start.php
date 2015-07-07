@@ -17,7 +17,7 @@
 	<div id="menus">
           <div class="btn-group">
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-              管理员
+              鹳狸猿
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">

@@ -24,7 +24,7 @@ switch ($hostname) {
     	    break;
     	}
     //以下使用可写空间(测试环境)
-	case 'test.file.larele.com'://老薛主机 - 香港1号
+	case 'test.file.larele.com'://待定
 	    {
 	        define('DI_DEBUG_MODE', true);
 	        define('DI_IO_RWFUNC_ENABLE', true);

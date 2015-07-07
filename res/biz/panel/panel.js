@@ -47,12 +47,13 @@ function loadContentFromDirToRightContent( id ){
 }
 //根据id打开文件下载链接
 function openFileFromId( id ){
-    window.open('./?'+_getRandomString(0)+'='+id);
+    alert();return;
+    window.open('./?access/access&ids='+id);
 }
 //在视图中，根据id定位到对应的目录【代码有误，暂时无法达到目的】
 function orientateDirFromId( id ){
     root = document.getElementById("ulroot");
-    $.post('./', {xxx:0}, function(data){
+    $.post('./?access/access&ids=0', function(data){
         root.outerHTML = data;
     });
     ids = id.split('-');
@@ -72,7 +73,7 @@ function orientateDirFromId( id ){
         alert(id+"====="+liclass);
 
         li.setAttribute("class", "opened");
-        $.post('./', {xxx:id}, function(data){
+        $.post('./?access/access&ids='+id, function(data){
             alert(i+"的data："+data);
             var innerr = li.innerHTML + data;
             li.innerHTML = innerr;
@@ -94,7 +95,7 @@ function showTheHrefWhereChoosing( id ){
     found = $url.lastIndexOf('?');
     //alert($url.slice(0, found));
     url_pre = $url.slice(0, found);
-    document.getElementById("menus").getElementsByTagName("input").item(0).value = url_pre + "?" + _getRandomString(0) + "=" + id;
+    document.getElementById("menus").getElementsByTagName("input").item(0).value = url_pre + "?access/access&ids=" + id;
 }
 //更新#url区域的路径导航
 function updatePathNavy( id ){
