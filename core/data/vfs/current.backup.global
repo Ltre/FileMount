@@ -129,11 +129,11 @@
 	<file id="19" name="AMV _ Videos _ Into The Labyrinth.mp4" type="file" src="F:\ACG资源扩展\视频\MAD-AMV-MMD\【原49MB的高清版本】AMV _ Videos _ Into The Labyrinth.mp4"/>
 	<dir id="20" name="论文装订" type="virtual" src=".nomedia" items="1">
 		<dir id="1" name="FKB" type="virtual" src=".nomedia" items="0">
-			<file id="1" name="1040112346_方坤标_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc" type="file" src="1040112346_方坤标_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc"/>
+			<file id="1" name="1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc" type="file" src="1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc"/>
 		</dir>
 	</dir>
 	<dir id="21" name="毕业论文" type="virtual" src=".nomedia" items="0">
-		<file id="1" name="1040112346_方坤标_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc" type="file" src="F:\作业\当前任务\毕业设计\论文装订\1040112346_方坤标_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc"/>
-		<file id="2" name="1040112346_方坤标_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.pdf" type="file" src="F:\作业\当前任务\毕业设计\论文装订\1040112346_方坤标_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.pdf"/>
+		<file id="1" name="1040110000_XXXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc" type="file" src="F:\作业\当前任务\毕业设计\论文装订\1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc"/>
+		<file id="2" name="1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.pdf" type="file" src="F:\作业\当前任务\毕业设计\论文装订\1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.pdf"/>
 	</dir>
 </root>
