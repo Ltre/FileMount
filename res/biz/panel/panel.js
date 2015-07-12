@@ -47,7 +47,6 @@ function loadContentFromDirToRightContent( id ){
 }
 //根据id打开文件下载链接
 function openFileFromId( id ){
-    alert();return;
     window.open('./?access/access&ids='+id);
 }
 //在视图中，根据id定位到对应的目录【代码有误，暂时无法达到目的】
@@ -92,9 +91,9 @@ function orientateDirFromId( id ){
 //在顶部input域 显示所选文件或目录的链接
 function showTheHrefWhereChoosing( id ){
     var $url = window.location.href;
-    found = $url.lastIndexOf('?');
+    var found = $url.lastIndexOf('?');
     //alert($url.slice(0, found));
-    url_pre = $url.slice(0, found);
+    var url_pre = $url.slice(0, found);
     document.getElementById("menus").getElementsByTagName("input").item(0).value = url_pre + "?access/access&ids=" + id;
 }
 //更新#url区域的路径导航
@@ -183,8 +182,8 @@ function v_click_opendir( obj ){
 //在#right_content区域单击文件
 function v_click_openfile( obj ){
     var id = obj.getAttribute("id").slice(2);
-    openFileFromId(id);
     showTheHrefWhereChoosing(id);
+    openFileFromId(id);
 }
 //在#right_content区域单击空白处
 function click_blank_in_right_content(obj){
