@@ -87,6 +87,7 @@
     	<div id="left">
             <br />
             &nbsp;&nbsp;<a class="btn btn-info" onclick="click_root_button()" onContextMenu="alert('禁止右键！');return false;">根目录</a>
+            &nbsp;&nbsp;<a class="btn btn-info" onclick="">刷新</a>
             <?php
 			//显示根目录下第一层的所有项目
 			printf($args['listHTML']);

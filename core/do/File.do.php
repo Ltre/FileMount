@@ -4,7 +4,7 @@ class FileDo extends DIDo {
 	 * 从本地文件创建文件：filefile-本地文件路径-父目录id
 	 */
 	//http://localhost:8080/Filemanager/?id=filefile|E%3A%5Cdemo%5Cdemo.txt|4-5-6-7-8
-	protected function filefile( $urlInfo ){
+	protected function filefile(){
 // 		echo "进入filefile()<br>";
 // 		var_dump(func_get_args());
 // 		echo "已出filefile()<br>";
@@ -109,7 +109,7 @@ class FileDo extends DIDo {
 	}
 	
 	
-	public function __construct(){
+	protected function _init(){
 		$this->xml = new XMLUtil("1.0", "UTF-8");
 		$this->root = $this->xml->loadGlobalAndGetRootElement();
 	}

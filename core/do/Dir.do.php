@@ -147,19 +147,7 @@ class DirDo extends DIDo {
 		echo "已出mvdir()<br>";
 	}
 	
-	/* 
-	 * 本模块过滤器
-	 * URL参数状态为3时，才可进入本模块
-	 */
-	public function doFilter() {
-		$urlInfo = $_SESSION['urlInfo'];
-		if(3 != $urlInfo['status']){
-			ErrorTips::url_param_doesnt_fit_the_shell(" DirAction ");
-			echo "@ErrorAction";
-			die;
-		}
-	}
-	public function __construct(){
+	protected function _init(){
 		$this->xml = new XMLUtil("1.0", "UTF-8");
 		$this->root = $this->xml->loadGlobalAndGetRootElement();
 	}

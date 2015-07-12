@@ -1,10 +1,6 @@
 <?php
 class DirInject extends DIInject {
     
-	private $urlInfo;
-	public function __construct(){
-		$this->urlInfo = $_SESSION['urlInfo'];
-	}
 	private function prevent(){
 		echo "@ErrorAction";
 		die;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root id="0" name="root" type="virtual" src="null" items="14" >
+<root id="0" name="root" type="virtual" src="null" items="16" >
 	<dir id="1" name="a这bc" type="real" src="E:\demo" items="8" >
 		<dir id="1" name="PHP学习资料" type="real" src="F:\学习资料\计算机科学类\【编程】及语言类\PHP" items="5" >
 			<dir id="1" name="PHP学习资料" type="real" src="F:\学习资料\计算机科学类\【编程】及语言类\PHP" items="4" >
@@ -60,7 +60,9 @@
 			<dir id="2" name="shiyanpin" type="real" src="e:\shiyanpin\" items="1" >
 				<dir id="1" name="npin" type="real" src="e:\shiyanpin\" items="0" />
 			</dir>
-			<dir id="3" name="这是新目录" type="real" src="E:\A" items="0" />
+			<dir id="3" name="这是新目录" type="real" src="E:\A" items="1" >
+				<dir id="1" name="这是新目录的新目录" type="virtual" src=".nomedia" items="0" />
+			</dir>
 		</dir>
 	</dir>
 	<dir id="9" name="编号文件夹" type="real" src="Y:\存档区\视频\番集连载【Y盘扩展】\丧女\【2013-7】丧女【夏雪字幕】\1.flv" items="4" >
@@ -136,4 +138,9 @@
 		<file id="1" name="1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc" type="file" src="F:\作业\当前任务\毕业设计\论文装订\1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.doc" />
 		<file id="2" name="1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.pdf" type="file" src="F:\作业\当前任务\毕业设计\论文装订\1040110000_XXX_华软旧货市场设计与实现（交易模块）_指导老师周显光_20140520.pdf" />
 	</dir>
+	<dir id="22" name="test711" type="virtual" src=".nomedia" items="0" />
+	<file id="23" name="test711.txt" type="file" src="fdsfdsfs" />
+	<file id="24" name="test7111.txt" type="file" src="fdsfds" />
+	<file id="25" name="test71111.txt" type="file" src="fdsfdsfsd" />
+	<dir id="26" name="双方的身份" type="real" src="发范德萨范德萨发" items="0" />
 </root>

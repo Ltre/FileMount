@@ -34,7 +34,7 @@ class AccessDo extends DIDo{
 			die;
 		} */
 	    $ids = arg('ids');
-	    DIRuntime::addItem(FMT_IDS, $ids);
+	    DIRuntime::addItem(FMT_IDS, $ids);//这个估计没用，到时删除，记得把调用的地方也清除了
 		self::analyseIdArrayToDirOrFile($ids);
 	}
 	/**
