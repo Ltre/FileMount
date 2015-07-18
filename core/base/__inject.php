@@ -112,7 +112,7 @@ function inject(DIBase $obj, $memberFuncName, $callback, array $callback_args=ar
 
     $tmpObj = create_class("tmp{$clazz}", false, $clazz, null, $vars, $funcs)->newInstance(array(array($callback, $callback_args)));
     return $tmpObj;
-    }
+}
 
 /**
 * 向对象实例方法注入前置或后置代码，可以同时对前后注入
