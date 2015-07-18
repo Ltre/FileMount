@@ -193,4 +193,18 @@ function inject_func($func, $callback, $callback_args=array(), $isAfter=false){
     
 }
 
-
+/**
+ * 重复调用
+ * 用法同call_user_func_array()
+ * 参数$useCache默认不使用结果缓存
+ */
+function recall($callback, $param_arr, $useCache = false){
+    if ('recall' == strtolower(__FUNCTION__))
+        throw new DIException('不能使用recall()调用自己');
+    $key = 'recall_ret_' . ( is_array($callback) ? get_class($callback[0]).'::'.$callback[1] : $callback );
+    $cache = $useCache ? $GLOBALS[$key] : false;
+    if ($cache) return $cache;
+    $ret = call_user_func_array($callback, $param_arr);
+    $GLOBALS[$key] = $ret;
+    return $ret;
+}
