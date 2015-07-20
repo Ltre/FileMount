@@ -201,7 +201,7 @@ class XMLUtil extends DOMDocument {
 	 */
 	public function getInfoFromSingleElement( $node ){
 		if(null == $node){
-			ActionUtil::action('Error')->no_such_node();
+			ErrorTips::no_such_node();
 			die;
 		}
 		$nodeName = $node->nodeName;	//标签名
