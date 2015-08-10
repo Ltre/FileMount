@@ -1,0 +1,30 @@
+# clone方式更新
+
+mkdir /home/wwwbackup/
+cd /home/wwwroot/
+tar -cf /home/wwwbackup/file.larele.com.tar  file.larele.com/
+git clone https://github.com/Ltre/FileMount.git
+rm -f -r FileMount/core/data/
+mv file.larele.com/core/data/  FileMount/core/data/
+mv file.larele.com/  file.larele.com.trash/
+mv FileMount/ file.larele.com/
+chmod -R 767 file.larele.com/core/data/
+rm -f -r file.larele.com.trash/
+
+
+
+# pull方式更新
+#（前置命令：cd /home/wwwsrc; git clone https://github.com/Ltre/FileMount.git ）
+
+
+cd /home/wwwsrc/FileMount
+git pull
+cp /home/wwwsrc/FileMount -r  /home/wwwroot/FileMount
+cd /home/wwwroot
+tar -cf /home/wwwbackup/file.larele.com.tar  file.larele.com/
+rm -f -r FileMount/core/data/
+mv file.larele.com/core/data/  FileMount/core/data/
+mv file.larele.com/  file.larele.com.trash/
+mv FileMount/ file.larele.com/
+chmod -R 767 file.larele.com/core/data/
+rm -f -r file.larele.com.trash/
