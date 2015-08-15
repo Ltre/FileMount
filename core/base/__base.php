@@ -190,14 +190,14 @@ abstract class DIContext extends DIBase {
         $this->contexts[$index] = $item;
     }
     
-    public function getContext($index){
-        if(!isset($this->contexts[$index]))
+    public function getContext($index, $useStrict = false){
+        if(!isset($this->contexts[$index]) && $useStrict)
             throw new DIException("该索引 [ $index ]在系统上下文中不存在");
         return $this->contexts[$index];
     }
     
-    public function unsetContext($index){
-        if(!isset($this->contexts[$index]))
+    public function unsetContext($index, $useStrict = false){
+        if(!isset($this->contexts[$index]) && $useStrict)
             throw new DIException("该索引 [ $index ]在系统上下文中不存在");
         array_unset($this->contexts, $index);
     }
@@ -250,8 +250,8 @@ class DIRuntime extends DIBase {
     }
     
     //添加
-    static function addItem($index, $item){
-        if(isset(self::$pool[$index]))
+    static function addItem($index, $item, $useStrict = false){
+        if(isset(self::$pool[$index]) && $useStrict)
             throw new DIException("该索引 [ $index ]在系统运行时中已存在");
         self::$pool[$index] = $item;
     }
@@ -263,15 +263,15 @@ class DIRuntime extends DIBase {
     }
     
     //更新
-    static function updItem($index, $item){
-        if(!isset(self::$pool[$index]))
+    static function updItem($index, $item, $useStrict = false){
+        if(!isset(self::$pool[$index]) && $useStrict)
             throw new DIException("该索引 [ $index ]在系统运行时中不存在");
         self::$pool[$index] = $item;
     }
     
     //删除
-    static function delItem($index){
-        if(!isset(self::$pool[$index]))
+    static function delItem($index, $useStrict = false){
+        if(!isset(self::$pool[$index]) && false)
             throw new DIException("该索引 [ $index ]在系统运行时中不存在");
         array_unset(self::$pool, $index);
     }
