@@ -213,7 +213,7 @@ class DIMySQL implements DIModelTemplate {
         $sth = $this->_bindParams($sql, $data);
         if ($sth->execute()) return self::$_conn->lastInsertId();
         $err = $sth->errorInfo();
-        throw new Exception('Database SQL: "' . $sql. '". ErrorInfo: '. $err[2], 1);
+        throw new DIException('Database SQL: "' . $sql. '". ErrorInfo: '. $err[2], 1);
     }
     
     function update(array $cond, $data = array()){
@@ -304,7 +304,7 @@ class DIMySQL implements DIModelTemplate {
 	    $sth = $this->_bindParams( $sql, $params );
 	    if( $sth->execute() ) return $sth->rowCount();
 	    $err = $sth->errorInfo();
-	    throw new Exception('Database SQL: "' . $sql. '". ErrorInfo: '. $err[2], 1);
+	    throw new DIException('Database SQL: "' . $sql. '". ErrorInfo: '. $err[2], 1);
 	}
 	
     private function _bindParams($sql, $params=array()){
