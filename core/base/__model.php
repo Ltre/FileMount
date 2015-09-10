@@ -71,6 +71,7 @@ abstract class DIModel extends DIBase implements DIModelTemplate {
     final function __construct(){
         if (empty($this->table)) {
             $short_table = $this->getShortClassName(ucfirst(DI_KEYWORD_MODEL));
+            $short_table = preg_replace('/^\_/', '', preg_replace('/([^A-Z]*)([A-Z])/', '$1_$2', $short_table));//如AbcDefGh=>Abc_Aef_Gh
             $this->table = strtolower(DIDBConfig::$table_prefix . $short_table);
         }
         
