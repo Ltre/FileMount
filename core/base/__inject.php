@@ -201,7 +201,7 @@ function inject_func($func, $callback, $callback_args=array(), $isAfter=false){
 function recall($callback, $param_arr, $useCache = false){
     if ('recall' == strtolower(__FUNCTION__))
         throw new DIException('不能使用recall()调用自己');
-    $key = 'recall_ret_' . sha1( ( is_array($callback) ? get_class($callback[0]).$callback[1] : $callback ) . serialize($param_arr) );
+    $key = 'recall_ret_' . sha1( ( is_array($callback) ? get_class($callback[0]).$callback[1] : json_encode($callback) ) . serialize($param_arr) );
     $cache = $useCache ? $GLOBALS[$key] : false;
     if ($cache) return $cache;
     $ret = call_user_func_array($callback, $param_arr);
