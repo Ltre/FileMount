@@ -41,7 +41,6 @@ class DIException extends Exception {
             if (is_file($errPage)) {
                 include $errPage;
             }
-            die;
 		}
 		
 	}
