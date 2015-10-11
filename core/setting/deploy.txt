@@ -1,6 +1,5 @@
 # clone方式更新
-
-前置命令：cd /home/wwwroot; git clone https://github.com/Ltre/FileMount.git; mv /home/wwwroot/FileMount /home/wwwroot/file.larele.com
+# 前置命令：cd /home/wwwroot; git clone https://github.com/Ltre/FileMount.git; mv /home/wwwroot/FileMount /home/wwwroot/file.larele.com
 
 mkdir /home/wwwbackup/
 cd /home/wwwroot/
