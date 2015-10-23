@@ -9,6 +9,7 @@ rm -f -r FileMount/core/data/
 mv file.larele.com/core/data/  FileMount/core/data/
 mv file.larele.com/  file.larele.com.trash/
 mv FileMount/ file.larele.com/
+rm file.larele.com/.git -r -f
 chmod -R 767 file.larele.com/core/data/
 rm -f -r file.larele.com.trash/
 
@@ -27,5 +28,6 @@ rm -f -r FileMount/core/data/
 mv file.larele.com/core/data/  FileMount/core/data/
 mv file.larele.com/  file.larele.com.trash/
 mv FileMount/ file.larele.com/
+rm file.larele.com/.git -r -f
 chmod -R 767 file.larele.com/core/data/
 rm -f -r file.larele.com.trash/
