@@ -62,11 +62,11 @@ interface DIModelTemplate {
 abstract class DIModel extends DIBase implements DIModelTemplate {
     public $table = null;//表名默认为前缀+类名去掉“Model”，也可以在继承后充写改属性来指定表名
     public $page;//分页缓存变量，操作权共享给数据库驱动，如DIMySQL，详见__constructor()
-    protected static $_conn = null;
-    protected static $_cache_rs = array();
+    protected $_conn = null;
+    protected $_cache_rs = array();
     
     /** @var DIModel */
-    protected static $_driver_handler;
+    protected $_driver_handler;
     
     final function __construct(){
         if (empty($this->table)) {
@@ -80,11 +80,11 @@ abstract class DIModel extends DIBase implements DIModelTemplate {
             throw new DIException('找不到数据库驱动类，请检查数据库配置文件和驱动类文件');
         }
         try {
-            self::$_driver_handler = new $driver($this->table, $this);
+            $this->_driver_handler = new $driver($this->table, $this);
         } catch (Exception $e) {
             throw new DIException($e->getMessage());
         }
-        self::$_conn or self::connect();
+        $this->_conn or self::connect();
     }
     
 	/**
@@ -93,68 +93,68 @@ abstract class DIModel extends DIBase implements DIModelTemplate {
 	 */
 	final function connect(){
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    self::$_conn = self::$_driver_handler->connect();
-	    return self::$_conn;
+	    $this->_conn = $this->_driver_handler->connect();
+	    return $this->_conn;
 	}
 	
 	final function query($sql, $params = array()){
 	    if (empty($sql)) return false;
 		//填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->query($sql, $params);
+	    return $this->_driver_handler->query($sql, $params);
 	}
 	
 	final function insert($data = array()){
 	    if (empty($data)) return false;
 		//填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->insert($data);
+	    return $this->_driver_handler->insert($data);
 	}
 	
     final function update(array $cond, $data = array()){
 		//填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-        return self::$_driver_handler->update($cond, $data);
+        return $this->_driver_handler->update($cond, $data);
 	}
 	
 	function alter(array $cond, $field, $optval = '+1') {
 	    if (empty($cond)) return false;
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->alter($cond, $field, $optval);
+	    return $this->_driver_handler->alter($cond, $field, $optval);
 	}
 	
 	function alterByExpr(array $cond, array $exprs){
 	    if (empty($cond)) return false;
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->alterByExpr($cond, $exprs);
+	    return $this->_driver_handler->alterByExpr($cond, $exprs);
 	}
 	
 	final function delete(array $cond){
 		//填写模板套用过程，并在DIModelTemplate中声明这些模板方法
 		if (empty($cond)) return false;
-		return self::$_driver_handler->delete($cond);
+		return $this->_driver_handler->delete($cond);
 	}
 	
 	final function select($cond=array(), $field='', $order=null, $limit=null){
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->select($cond, $field, $order, $limit);
+	    return $this->_driver_handler->select($cond, $field, $order, $limit);
 	}
 	
 	final function find($cond=array(),$field='', $order=null){
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->find($cond,$field, $order);
+	    return $this->_driver_handler->find($cond,$field, $order);
 	}
 	
 	final function count($cond = null, $bindparams = array()){
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->count($cond, $bindparams);
+	    return $this->_driver_handler->count($cond, $bindparams);
 	}
 	
 	final function execute($sql=null, $bindparams=array()){
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->execute($sql, $bindparams);
+	    return $this->_driver_handler->execute($sql, $bindparams);
 	}
 	
 	final function pager($page, $pageSize = 10, $scope = 10, $total){
 	    //填写模板套用过程，并在DIModelTemplate中声明这些模板方法
-	    return self::$_driver_handler->pager($page, $pageSize, $scope, $total);
+	    return $this->_driver_handler->pager($page, $pageSize, $scope, $total);
 	}
 }
 
@@ -165,7 +165,7 @@ abstract class DIModel extends DIBase implements DIModelTemplate {
  */
 class DIMySQL implements DIModelTemplate {
     
-    protected static $_conn;//与DIModel::$_conn存在引用关联，详见本类的&connect()
+    protected $_conn;//与DIModel::$_conn存在引用关联，详见本类的&connect()
     protected $table;//当前表名
     protected $_M;//DIModel对象授予操作权限
     
@@ -185,8 +185,8 @@ class DIMySQL implements DIModelTemplate {
         $options = array(
         	PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8'
         );
-        self::$_conn = new PDO($dsn, DIDBConfig::$user, DIDBConfig::$pwd, $options);
-        return self::$_conn;
+        $this->_conn = new PDO($dsn, DIDBConfig::$user, DIDBConfig::$pwd, $options);
+        return $this->_conn;
     }
     
     /**
@@ -211,7 +211,7 @@ class DIMySQL implements DIModelTemplate {
         }
         $sql = "INSERT INTO " . $this->table . " (" . join(', ', $keys) . ") VALUES ( :" . join(', :', $prevalues) . ")";
         $sth = $this->_bindParams($sql, $data);
-        if ($sth->execute()) return self::$_conn->lastInsertId();
+        if ($sth->execute()) return $this->_conn->lastInsertId();
         $err = $sth->errorInfo();
         throw new DIException('Database SQL: "' . $sql. '". ErrorInfo: '. $err[2], 1);
     }
@@ -296,7 +296,7 @@ class DIMySQL implements DIModelTemplate {
 	    } else {
 	        $count = $this->query("{$select} {$where}", $bindparams);
 	    }
-	    return isset($count[0]->total) && $count[0]->total ? $count[0]->total : 0;
+	    return isset($count[0]->total) && $count[0]->total ? intval($count[0]->total) : 0;
 	}
 	
 	function execute($sql=null, $params=array()){
@@ -308,7 +308,7 @@ class DIMySQL implements DIModelTemplate {
 	}
 	
     private function _bindParams($sql, $params=array()){
-        $sth = self::$_conn->prepare($sql);
+        $sth = $this->_conn->prepare($sql);
         if(is_array($params) && !empty($params)){
             foreach($params as $k=>&$v){
                 $sth->bindParam($k, $v);
@@ -334,7 +334,7 @@ class DIMySQL implements DIModelTemplate {
         if(is_bool($str))return $str ? 1 : 0;
         if(is_int($str))return (int)$str;
         if(@get_magic_quotes_gpc())$str = stripslashes($str);
-        return self::$_conn->quote($str);
+        return $this->_conn->quote($str);
     }
     
     //参数：当前页码，页内条数上限，可见页码数，记录总条数
