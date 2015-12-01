@@ -32,7 +32,7 @@ if (in_array($hostname, array(
 	
     class DIDBConfig {
         static $driver = 'DIMySQL';//驱动类
-        static $host = '172.16.43.111';
+        static $host = '172.26.42.222';
         static $port = 3306;
         static $db = 'filemount';
         static $user = 'filemount';
