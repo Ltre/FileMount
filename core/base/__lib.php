@@ -459,7 +459,8 @@ function session($name=null, $value=null, $prefix=null){
 	        return;//如果第一个参数为null/false/空字符串,则清空所有DI前缀设置的会话
 	    }
 	    if(!isset($_SESSION[$prefix.$name])){
-	        throw new DIException("试图获取不存在的会话 [ {$prefix}{$name} ] ");
+	        //throw new DIException("试图获取不存在的会话 [ {$prefix}{$name} ] ");
+	        return null;
 	    }
 		return unserialize($_SESSION[$prefix.$name]);
 	}
