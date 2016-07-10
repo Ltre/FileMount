@@ -1,4 +1,18 @@
-Apache HP PC:
+Apache HP PC in wamp 3:
+
+<VirtualHost *:80>
+	ServerName filemount.dev
+	DocumentRoot e:/InstalledApp/Zend/Apache2/htdocs/FileMount
+	<Directory  "e:/InstalledApp/Zend/Apache2/htdocs/FileMount/">
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Require local
+	</Directory>
+</VirtualHost>
+
+--------------------------------------------------------------
+
+Apache HP PC in wamp 2.2:
 
 NameVirtualHost filemount.dev:80
 <VirtualHost *:80>
@@ -6,10 +20,9 @@ NameVirtualHost filemount.dev:80
 	ServerName filemount.dev
 </VirtualHost>
 
-
 --------------------------------------------------------------
 
-Apache Company PC:
+Apache Company PC in wamp 2.2:
 
 NameVirtualHost filemount.dev:80
 <VirtualHost filemount.dev:80>
