@@ -22,6 +22,22 @@ NameVirtualHost filemount.dev:80
 
 --------------------------------------------------------------
 
+Apache Company PC in wamp 3:
+
+<VirtualHost *:80>
+    ServerName filemount.dev
+    ErrorLog "logs/filemount.dev-error.log"
+    CustomLog "logs/filemount.dev-access.log" common
+    DocumentRoot d:/SERV_WORKSPACE/pub/FileMount
+    <Directory  "d:/SERV_WORKSPACE/pub/FileMount/">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require local
+    </Directory>
+</VirtualHost>
+
+--------------------------------------------------------------
+
 Apache Company PC in wamp 2.2:
 
 NameVirtualHost filemount.dev:80
