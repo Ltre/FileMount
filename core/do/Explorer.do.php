@@ -7,7 +7,7 @@ class ExplorerDo extends DIDo {
             $this->toLogin();
         } else {
             $treeId = $this->_getTreeId($uid);
-            $this->root = VfsTree::load($treeId);
+            $this->root = VfsTree::loadDir($treeId);
             $this->stpl();
         }
     }
