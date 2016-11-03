@@ -34,4 +34,4 @@ switch ($hostname) {
 }
 
 
-define('DI_SMARTY_DEFAULT', false);//暂时所有环境不默认采用smarty
+define('DI_SMARTY_DEFAULT', true);//所有环境都采用smarty
