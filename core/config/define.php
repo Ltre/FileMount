@@ -32,6 +32,3 @@ switch ($hostname) {
 	    }
 	default:die;//环境不明确，终止执行
 }
-
-
-define('DI_SMARTY_DEFAULT', true);//所有环境都采用smarty
