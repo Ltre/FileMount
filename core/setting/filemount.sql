@@ -33,7 +33,7 @@ CREATE TABLE `fmt_node` (
   `node_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '节点ID',
   `parent_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '父节点ID',
   `node_path` text COLLATE utf8_unicode_ci NOT NULL COMMENT '节点ID用半角逗号隔开',
-  `node_level` int(11) NOT NULL DEFAULT '1' COMMENT '层级，根部为1',
+  `node_level` int(11) NOT NULL DEFAULT '0' COMMENT '层级，根部为0',
   `is_leaf` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为叶子节点',
   `file_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '文件ID',
   PRIMARY KEY (`node_id`),
