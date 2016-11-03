@@ -58,6 +58,32 @@ CREATE TABLE `fmt_tree` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='文件节点树';
 
 
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `fmt_file`
+--
+
+CREATE TABLE `fmt_file` (
+  `file_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '文件ID',
+  `sha1` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `mimetype` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '文件媒体类型',
+  `filesize` int(11) NOT NULL DEFAULT '0' COMMENT '文件大小',
+  `fileext` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '文件扩展名',
+  `filename` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '文件名，如123.jpg',
+  `rootdir` text COLLATE utf8_unicode_ci NOT NULL COMMENT '文件存储点指定根部的所在目录，如/home',
+  `filepath` text COLLATE utf8_unicode_ci NOT NULL COMMENT '相对根部的文件路径, 如根为/home，则值为abc/123.jpg',
+  `fullpath` text COLLATE utf8_unicode_ci NOT NULL COMMENT '实际存储文件的文件全路径, 如/home/abc/123.jpg',
+  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`file_id`),
+  KEY `idx_sha1` (`sha1`),
+  KEY `idx_filename` (`filename`),
+  KEY `idx_createtime` (`create_time`),
+  KEY `idx_updatetime` (`update_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
