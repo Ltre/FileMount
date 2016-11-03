@@ -55,7 +55,7 @@ CREATE TABLE `fmt_tree` (
   `uid` bigint(20) NOT NULL COMMENT '所属用户ID',
   PRIMARY KEY (`tree_id`),
   KEY `uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='文件节点树';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='文件节点树';
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
