@@ -64,6 +64,7 @@ CREATE TABLE `fmt_tree` (
 -- 表的结构 `fmt_file`
 --
 
+DROP TABLE IF EXISTS `fmt_file`;
 CREATE TABLE `fmt_file` (
   `file_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '文件ID',
   `sha1` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
