@@ -4,12 +4,22 @@
 <meta charset="UTF-8">
 <title>Explorer</title>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<style>
+	.opened{
+		list-style-image: url(http://file.larele.com/res/biz/panel/tree/-.jpg);
+	}
+	.closed{
+	    list-style-image: url(http://file.larele.com/res/biz/panel/tree/+.jpg);
+	}
+</style>
 </head>
 <body>
 
-<div class="list" data-nodeid="0">
-    <button class="item">顶级节点</button>
-</div>
+<ul>
+	<li class="list closed" data-nodeid="0" data-closed="1">
+	    <button class="item">顶级节点</button>
+	</li>
+</ul>
 
 <script>
 function expand(nodeId){
@@ -18,9 +28,17 @@ function expand(nodeId){
 	$.getJSON(url, function(j){
 	    if (j.code == 0) {
 	        var p = $('.list[data-nodeid='+nodeId+']');
-	        $.each(j.data, function(i, e){
-		        p.append('<div class="list" data-nodeid="'+e.node_id+'"><button class="item">'+e.filename+'</button></div>');
-	        });
+	        if (p.data('closed') == 1) {
+	            p.data('closed', 0);
+	            p.removeClass('closed').addClass('opened');
+		        $.each(j.data, function(i, e){
+			        p.append('<ul><li class="list closed" data-nodeid="'+e.node_id+'" data-closed="1"><button class="item">'+e.filename+'</button></li></ul>');
+		        });
+	        } else {
+	            p.data('closed', 1);
+	            p.removeClass('opened').addClass('closed');
+	            p.children('ul').remove();
+	        }
 	    }
 	});
 }
