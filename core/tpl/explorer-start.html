@@ -28,7 +28,6 @@ function expand(folderElem, nodeId){
             folderElem.data('closed', 0);
             folderElem.removeClass('closed').addClass('opened');
             $.each(list, function(i, e){
-                //p.append('<ul><li class="item closed" data-nodeid="'+e.node_id+'" data-closed="1"><button class="item-btn">'+e.filename+'</button></li></ul>');
                 renderChildren(folderElem, e);
             });
         });
