@@ -36,6 +36,8 @@ CREATE TABLE `fmt_node` (
   `node_level` int(11) NOT NULL DEFAULT '0' COMMENT '层级，根部为0',
   `is_leaf` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为叶子节点',
   `file_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '文件ID',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`node_id`),
   KEY `idx_parent_id` (`parent_id`),
   KEY `idx_file_id` (`file_id`)
@@ -75,13 +77,9 @@ CREATE TABLE `fmt_file` (
   `rootdir` text COLLATE utf8_unicode_ci NOT NULL COMMENT '文件存储点指定根部的所在目录，如/home',
   `filepath` text COLLATE utf8_unicode_ci NOT NULL COMMENT '相对根部的文件路径, 如根为/home，则值为abc/123.jpg',
   `fullpath` text COLLATE utf8_unicode_ci NOT NULL COMMENT '实际存储文件的文件全路径, 如/home/abc/123.jpg',
-  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`file_id`),
   KEY `idx_sha1` (`sha1`),
-  KEY `idx_filename` (`filename`),
-  KEY `idx_createtime` (`create_time`),
-  KEY `idx_updatetime` (`update_time`)
+  KEY `idx_filename` (`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
