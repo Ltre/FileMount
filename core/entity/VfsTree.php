@@ -31,7 +31,7 @@ class VfsTree extends DIEntity {
             if (empty($node['parent_id'])) {
                 return -2;//找不到该节点的父节点
             } else {
-                return self::getOwnerByNodeId($nodeId);
+                return self::getOwnerByNodeId($node['parent_id']);
             }
         }
     }
