@@ -16,26 +16,26 @@
 <body>
 
 <ul>
-	<li class="item closed" data-nodeid="0" data-closed="1">
+	<li class="item folder closed" data-nodeid="0" data-closed="1">
 	    <button class="item-btn">顶级节点</button>
 	</li>
 </ul>
 
 <script>
-function expand(nodeId){
-    var p = $('.item[data-nodeid='+nodeId+']');
-    if (p.data('closed') == 1) {
+function expand(folderElem, nodeId){
+    if (folderElem.data('closed') == 1) {
         requestExpand(nodeId, function(list){
-	        p.data('closed', 0);
-	        p.removeClass('closed').addClass('opened');
+            folderElem.data('closed', 0);
+            folderElem.removeClass('closed').addClass('opened');
             $.each(list, function(i, e){
-                p.append('<ul><li class="item closed" data-nodeid="'+e.node_id+'" data-closed="1"><button class="item-btn">'+e.filename+'</button></li></ul>');
+                //p.append('<ul><li class="item closed" data-nodeid="'+e.node_id+'" data-closed="1"><button class="item-btn">'+e.filename+'</button></li></ul>');
+                renderChildren(folderElem, e);
             });
         });
     } else {
-        p.data('closed', 1);
-        p.removeClass('opened').addClass('closed');
-        p.children('ul').remove();
+        folderElem.data('closed', 1);
+        folderElem.removeClass('opened').addClass('closed');
+        folderElem.children('ul').remove();
     }
 }
 
@@ -51,9 +51,19 @@ function requestExpand(nodeId, cb){
 }
 
 
-$(document).on('click', '.item>.item-btn', function(){
-    var nodeId = $(this).parent('.item').data('nodeid');
-    expand(nodeId);
+function renderChildren(folderElem, data){
+    var liClass = data.is_leaf ? '' : 'folder closed';
+    var dataClosed = data.is_leaf ? '' : 'data-closed="1"';
+    var tpl = '<ul><li class="item '+liClass+'" data-nodeid="'+data.node_id+'" '+dataClosed+'>';
+    tpl += '<button class="item-btn">'+data.filename+'</button></li></ul>';
+    folderElem.append(tpl);
+}
+
+
+$(document).on('click', '.item.folder>.item-btn', function(){
+    var folderElem = $(this).parent('.item.folder')
+    var nodeId = folderElem.data('nodeid');
+    expand(folderElem, nodeId);
 });
 </script>
 
