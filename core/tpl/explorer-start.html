@@ -3,8 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Explorer</title>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
+
+<div class="list" data-nodeid="0">
+    <button class="item">顶级节点</button>
+</div>
+
+<script>
+function expand(nodeId){
+	var url = '/explorer/expandList/';
+	if (nodeId) url += nodeId;
+	$.getJSON(url, function(j){
+	    if (j.code == 0) {
+	        var p = $('.list[data-nodeid='+nodeId+']');
+	        $.each(j.data, function(i, e){
+		        p.append('<div class="list" data-nodeid="'+e.node_id+'"><button class="item">'+e.filename+'</button></div>');
+	        });
+	    }
+	});
+}
+
+$(document).on('click', '.list>.item', function(){
+    var nodeId = $(this).parent('.list').data('nodeid');
+    expand(nodeId);
+});
+
+</script>
 
 </body>
 </html>
