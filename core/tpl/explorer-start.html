@@ -16,38 +16,45 @@
 <body>
 
 <ul>
-	<li class="list closed" data-nodeid="0" data-closed="1">
-	    <button class="item">顶级节点</button>
+	<li class="item closed" data-nodeid="0" data-closed="1">
+	    <button class="item-btn">顶级节点</button>
 	</li>
 </ul>
 
 <script>
 function expand(nodeId){
-	var url = '/explorer/expandList/';
-	if (nodeId) url += nodeId;
-	$.getJSON(url, function(j){
-	    if (j.code == 0) {
-	        var p = $('.list[data-nodeid='+nodeId+']');
-	        if (p.data('closed') == 1) {
-	            p.data('closed', 0);
-	            p.removeClass('closed').addClass('opened');
-		        $.each(j.data, function(i, e){
-			        p.append('<ul><li class="list closed" data-nodeid="'+e.node_id+'" data-closed="1"><button class="item">'+e.filename+'</button></li></ul>');
-		        });
-	        } else {
-	            p.data('closed', 1);
-	            p.removeClass('opened').addClass('closed');
-	            p.children('ul').remove();
-	        }
-	    }
-	});
+    var p = $('.item[data-nodeid='+nodeId+']');
+    if (p.data('closed') == 1) {
+        requestExpand(nodeId, function(list){
+	        p.data('closed', 0);
+	        p.removeClass('closed').addClass('opened');
+            $.each(list, function(i, e){
+                p.append('<ul><li class="item closed" data-nodeid="'+e.node_id+'" data-closed="1"><button class="item-btn">'+e.filename+'</button></li></ul>');
+            });
+        });
+    } else {
+        p.data('closed', 1);
+        p.removeClass('opened').addClass('closed');
+        p.children('ul').remove();
+    }
 }
 
-$(document).on('click', '.list>.item', function(){
-    var nodeId = $(this).parent('.list').data('nodeid');
+
+function requestExpand(nodeId, cb){
+    var url = '/explorer/expandList/';
+    if (nodeId) url += nodeId;
+    $.getJSON(url, function(j){
+        if (j.code == 0) {
+            cb.call(this, j.data);
+        }
+    });
+}
+
+
+$(document).on('click', '.item>.item-btn', function(){
+    var nodeId = $(this).parent('.item').data('nodeid');
     expand(nodeId);
 });
-
 </script>
 
 </body>
