@@ -14,6 +14,9 @@ class VfsTree extends DIEntity {
             SELECT f.*, n.* FROM {$F->table} f, {$N->table} n 
             WHERE f.file_id = n.file_id AND n.parent_id = :parent_id";
         $children = $F->query($sql, array('parent_id' => $nodeId));
+        foreach ($children as $k => $v) {
+            $children[$k]['is_leaf'] = boolval($v['is_leaf']);
+        }
         return $children;
     }
     
