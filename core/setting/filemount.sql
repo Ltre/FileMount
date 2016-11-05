@@ -31,6 +31,7 @@ USE `filemount`;
 DROP TABLE IF EXISTS `fmt_node`;
 CREATE TABLE `fmt_node` (
   `node_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '节点ID',
+  `node_name` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '节点名，当对应的file_id非0时，会取文件名为节点名',
   `parent_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '父节点ID',
   `node_path` text COLLATE utf8_unicode_ci NOT NULL COMMENT '节点ID用半角逗号隔开',
   `node_level` int(11) NOT NULL DEFAULT '0' COMMENT '层级，根部为0',
@@ -42,7 +43,6 @@ CREATE TABLE `fmt_node` (
   KEY `idx_parent_id` (`parent_id`),
   KEY `idx_file_id` (`file_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='文件节点';
-
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,6 @@ CREATE TABLE `fmt_tree` (
   PRIMARY KEY (`tree_id`),
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='文件节点树';
-
 
 -- --------------------------------------------------------
 

@@ -11,8 +11,8 @@ class VfsTree extends DIEntity {
         $N = supertable('Node');
         $F = supertable('File');
         $sql = "
-            SELECT f.*, n.* FROM {$F->table} f, {$N->table} n 
-            WHERE f.file_id = n.file_id AND n.parent_id = :parent_id";
+            SELECT f.*, n.* FROM {$N->table} n LEFT JOIN {$F->table} f
+            ON n.file_id = f.file_id WHERE n.parent_id = :parent_id";
         $children = $F->query($sql, array('parent_id' => $nodeId));
         foreach ($children as $k => $v) {
             $children[$k]['is_leaf'] = boolval($v['is_leaf']);
@@ -44,5 +44,50 @@ class VfsTree extends DIEntity {
         $tree = supertable('Tree')->find(array('uid' => $uid)) ?: array();
         return $tree;
     }
-
+    
+    //创建树
+    static function createTree($rootNodeId, $uid){
+        $T = supertable('Tree');
+        $find = $T->find(array('root_node' => $rootNodeId));
+        if (empty($find)) {
+            $treeId = $T->insert(array('root_node' => $rootNodeId, 'uid' => $uid));
+        } else {
+            $treeId = $find['tree_id'];
+        }
+        return $treeId;
+    }
+    
+    //创建节点
+    static function createNode($nodeName = '', $fileId = 0, $isLeaf = 0, $parentId = 0){
+        $N = supertable('Node');
+        $parent = $N->find(array('node_id' => $parentId));
+        if ($parentId != 0 && empty($parent)) {
+            return -1;//找不到父节点
+        } else {
+            $nodeId = $N->insert(array(
+                'node_name' => $nodeName,
+                'parent_id' => $parentId,
+                'node_path' => '',//暂时留空，下步更新
+                'node_level' => $parent['node_level'] + 1,
+                'is_leaf' => $isLeaf, 
+                'file_id' => $fileId
+            ));
+            $N->update(array('node_id' => $nodeId), array('node_path' => "{$parent['node_path']},{$nodeId}"));
+            $N->update(array('node_id' => $parentId), array('is_leaf' => 0));
+            return $nodeId;
+        }
+    }
+    
+    
+    //获取节点
+    static function getNode($nodeId){
+        $N = supertable('Node');
+        $F = supertable('File');
+        $sql = "
+            SELECT f.*, n.* FROM {$N->table} n LEFT JOIN {$F->table} f
+            ON f.file_id = n.file_id WHERE n.node_id = :node_id";
+        $node = $N->query($sql, array(':node_id' => $nodeId)) ?: array();
+        return $node;
+    }
+    
 }

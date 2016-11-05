@@ -54,7 +54,7 @@ function renderChildren(folderElem, data){
     var liClass = data.is_leaf ? '' : 'folder closed';
     var dataClosed = data.is_leaf ? '' : 'data-closed="1"';
     var tpl = '<ul><li class="item '+liClass+'" data-nodeid="'+data.node_id+'" '+dataClosed+'>';
-    tpl += '<button class="item-btn">'+data.filename+'</button></li></ul>';
+    tpl += '<button class="item-btn">'+data.node_name+'</button></li></ul>';
     folderElem.append(tpl);
 }
 
