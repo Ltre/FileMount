@@ -77,6 +77,27 @@ class ExplorerDo extends DIDo {
     }
     
     
+    /**
+     * 接口：更改文件或目录名
+     */
+    function setItemName(){
+        $nodeId = arg('nodeId');
+        $name = arg('name');
+        if (empty($nodeId) || '' === $name || null === $name) {
+            putjson(-1, null, '参数错误');
+        }
+        $rs = VfsTree::setNodeName($nodeId, $name);
+        //putjson($rs?0:-2, null, $rs?'更新成功':'更新失败');
+    }
+    
+    
+    /**
+     * 接口：移动到新目录
+     */
+    function moveToDir(){
+        
+    }
+    
 
     function toLogin(){
         $this->stpl();
