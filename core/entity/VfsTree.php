@@ -45,6 +45,7 @@ class VfsTree extends DIEntity {
         return $tree;
     }
     
+    
     //创建树
     static function createTree($rootNodeId, $uid){
         $T = supertable('Tree');
@@ -88,6 +89,59 @@ class VfsTree extends DIEntity {
             ON f.file_id = n.file_id WHERE n.node_id = :node_id";
         $node = $N->query($sql, array(':node_id' => $nodeId)) ?: array();
         return $node;
+    }
+    
+    
+    //【待测试】修改节点名（即虚拟文件系统里的目录或文件名）
+    static function setNodeName($nodeId, $name){
+        $can = false;
+        $N = supertable('Node');
+        $find = $N->find(array('node_id' => $nodeId));
+        if (empty($find)) {
+            return -1;//找不到节点
+        }
+        //是顶级节点，则可直接修改名称；否则，需要检查同级的节点是否存在同名的
+        if ($find['parent_id'] != 0) {
+            $select = $N->select(array('parent_id' => $find['parent_id'])) ?: array();
+            foreach ($select as $k => $v) {
+                if ($v['node_name'] == $name) {
+                    return -2;//名称已存在
+                }
+            }
+        }
+        $rs = $N->update(array('node_id' => $nodeId), array('node_name' => $name));
+        return $rs !== false ? 0 : -3;//更新成功；更新失败
+    }
+    
+    
+    //【待测试】移动到新的父节点
+    static function setNewParent($nodeId, $parentId){
+        $N = supertable('Node');
+        if ($nodeId == $parentId) {
+            return -1;//不能指定自身为父节点
+        }
+        $find = $N->find(array('node_id' => $nodeId));
+        if (empty($find)) {
+            return -2;//找不到节点
+        }
+        if ($find['parent_id'] == $parentId) {
+            return -3;//已经是父节点，没必要移动
+        }
+        $findPar = $N->find(array('node_id' => $parentId));
+        if (empty($findPar)) {
+            return -4;//找不到指定的父节点
+        }
+        $pathArr = explode(',', $findPar['node_path']);
+        if (in_array($nodeId, $pathArr)) {
+            $childPos = array_search($nodeId, $pathArr);
+            $parentPos = array_search($parentId, $pathArr);
+            //例如：parentPath=1,4,7,8。n=4, f=7 (X); n=7, f=1 (V)
+            if ($childPos - 1 <= $parentPos) {
+                return -5;//触发循环子节点异常
+            }
+        }
+        $rs = $N->update(array('node_id' => $nodeId), array('parent_id' => $parentId));
+        return $rs !== false ? 0 : -6;//更新成功；更新失败
     }
     
 }
