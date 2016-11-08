@@ -132,14 +132,11 @@ class VfsTree extends DIEntity {
         if (empty($findPar)) {
             return array('code' => -4, 'msg' => '找不到指定的父节点');
         }
-        $pathArr = explode(',', $findPar['node_path']);
-        if (in_array($nodeId, $pathArr)) {
-            $childPos = array_search($nodeId, $pathArr);
-            $parentPos = array_search($parentId, $pathArr);
-            //例如：parentPath=1,4,7,8。n=4, f=7 (X); n=7, f=1 (V)
-            if ($childPos - 1 <= $parentPos) {
-                return array('code' => -5, 'msg' => '触发循环子节点异常');
-            }
+        if ($findPar['file_id'] != 0) {
+            return array('code' => -5, 'msg' => '父节点不是目录');
+        }
+        if (self::_hasLoopChildException($nodeId, $parentId)) {
+            return array('code' => -6, 'msg' => '触发循环子节点异常');
         }
         $rs = $N->update(array('node_id' => $nodeId), array('parent_id' => $parentId));
         $success = $rs !== false;
@@ -151,7 +148,28 @@ class VfsTree extends DIEntity {
                 $N->update(array('node_id' => $find['parent_id']), array('is_leaf' => 1));
             }
         }
-        return array('code' => $success?0:-6, 'msg' => $success?'更新成功':'更新失败');
+        return array('code' => $success?0:-7, 'msg' => $success?'更新成功':'更新失败');
+    }
+    
+    
+    /*
+     * 检查节点被指定新的父节点后，是否会触发“循环子节点异常”。
+     * 例如：parentPath=1,4,7,8。n=4, f=7 (X); n=7, f=1 (V)
+     */
+    static protected function _hasLoopChildException($nodeId, $destParentId){
+        $N = supertable('Node');
+        $has = false;
+        while (1) {
+            $find = $N->find(array('node_id' => $destParentId));
+            if ($find['parent_id'] == 0) break;//到达顶级节点，结束
+            if ($find['parent_id'] == $nodeId) {
+                $has = true;//触发循环异常
+                break;
+            } else {
+                $destParentId = $find['parent_id'];
+            }
+        }
+        return $has;
     }
     
 }
