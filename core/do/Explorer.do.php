@@ -78,7 +78,7 @@ class ExplorerDo extends DIDo {
     
     
     /**
-     * 接口：更改文件或目录名
+     * 接口：更新文件或目录名
      */
     function setItemName(){
         $nodeId = arg('nodeId');
@@ -87,7 +87,7 @@ class ExplorerDo extends DIDo {
             putjson(-1, null, '参数错误');
         }
         $rs = VfsTree::setNodeName($nodeId, $name);
-        //putjson($rs?0:-2, null, $rs?'更新成功':'更新失败');
+        putjson($rs['code'], null, $rs['msg']);
     }
     
     
@@ -95,7 +95,13 @@ class ExplorerDo extends DIDo {
      * 接口：移动到新目录
      */
     function moveToDir(){
-        
+        $nodeId = arg('nodeId');
+        $parentId = arg('parentId');
+        if (empty($nodeId) || empty($parentId)) {
+            putjson(-1, null, '参数错误');
+        }
+        $rs = VfsTree::setNewParent($nodeId, $parentId);
+        putjson($rs['code'], null, $rs['msg']);
     }
     
 
