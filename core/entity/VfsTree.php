@@ -144,7 +144,12 @@ class VfsTree extends DIEntity {
         $rs = $N->update(array('node_id' => $nodeId), array('parent_id' => $parentId));
         $success = $rs !== false;
         if ($success) {
+            //将新的父节点变成非叶子节点
             $N->update(array('node_id' => $parentId), array('is_leaf' => 0));
+            //当旧的父节点不存在子节点时，将该父节点变成叶子节点
+            if (count($N->select(array('parent_id' => $find['parent_id']))?:array()) == 0) {
+                $N->update(array('node_id' => $find['parent_id']), array('is_leaf' => 1));
+            }
         }
         return array('code' => $success?0:-6, 'msg' => $success?'更新成功':'更新失败');
     }
