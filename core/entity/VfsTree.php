@@ -143,6 +143,9 @@ class VfsTree extends DIEntity {
         }
         $rs = $N->update(array('node_id' => $nodeId), array('parent_id' => $parentId));
         $success = $rs !== false;
+        if ($success) {
+            $N->update(array('node_id' => $parentId), array('is_leaf' => 0));
+        }
         return array('code' => $success?0:-6, 'msg' => $success?'更新成功':'更新失败');
     }
     
