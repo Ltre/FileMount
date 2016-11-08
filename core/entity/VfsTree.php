@@ -104,13 +104,14 @@ class VfsTree extends DIEntity {
         if ($find['parent_id'] != 0) {
             $select = $N->select(array('parent_id' => $find['parent_id'])) ?: array();
             foreach ($select as $k => $v) {
-                if ($v['node_name'] == $name) {
+                if ($v['node_id'] != $nodeId && $v['node_name'] == $name) {
                     return array('code' => -2, 'msg' => '名称已存在');
                 }
             }
         }
         $rs = $N->update(array('node_id' => $nodeId), array('node_name' => $name));
-        return array('code' => $rs!==false?0:-3, 'msg' => $rs?'更新成功':'更新失败');
+        $success = $rs !== false;
+        return array('code' => $success?0:-3, 'msg' => $success?'更新成功':'更新失败');
     }
     
     
@@ -141,7 +142,8 @@ class VfsTree extends DIEntity {
             }
         }
         $rs = $N->update(array('node_id' => $nodeId), array('parent_id' => $parentId));
-        return array('code' => $rs!==false?0:-6, 'msg' => $rs?'更新成功':'更新失败');
+        $success = $rs !== false;
+        return array('code' => $success?0:-6, 'msg' => $success?'更新成功':'更新失败');
     }
     
 }
