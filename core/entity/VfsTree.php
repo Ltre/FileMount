@@ -115,7 +115,7 @@ class VfsTree extends DIEntity {
     }
     
     
-    //【待测试】移动到新的父节点
+    //移动到新的父节点
     static function setNewParent($nodeId, $parentId){
         $N = supertable('Node');
         if ($nodeId == $parentId) {
