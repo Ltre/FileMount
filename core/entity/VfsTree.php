@@ -92,7 +92,7 @@ class VfsTree extends DIEntity {
     }
     
     
-    //【待测试】修改节点名（即虚拟文件系统里的目录或文件名）
+    //修改节点名（即虚拟文件系统里的目录或文件名）
     static function setNodeName($nodeId, $name){
         $can = false;
         $N = supertable('Node');
