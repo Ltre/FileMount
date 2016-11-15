@@ -1,6 +1,10 @@
 <?php
 
 class ExplorerDo extends DIDo {
+    
+    function start1(){
+        $this->stpl();
+    }
 
     function start(){$uid = 1;//获取已登录的用户ID
         if (empty($uid)) {
