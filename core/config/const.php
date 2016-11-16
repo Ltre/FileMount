@@ -26,3 +26,8 @@ define('MAX_SIZE_ON_DOWNLOAD', 629145600);	//这里限制 300 MB（暂时改为�
 define('NAME_VALUE_PREFIX_OF_NODE_ATTR', '未命名');
 //当前的ids，用于XML查找文件树
 define('FMT_IDS', 'ids');
+
+
+
+
+/**! -- 系统重做后的部分 -- */
