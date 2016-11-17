@@ -7,6 +7,7 @@ class VfsTree extends DIEntity {
         return $tree;
     }
     
+    //加载节点下的子文件节点信息集
     static function loadChildren($nodeId){
         $N = supertable('Node');
         $F = supertable('File');
