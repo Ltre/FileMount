@@ -1,0 +1,22 @@
+body{
+	font-family: Microsoft Yahei;
+}
+.diy-path-area{
+	background-color: #efefef;
+	padding-top: 8px;
+	padding-bottom: 5px;
+}
+.diy-path-name{
+	color: #888;
+}
+.diy-path-divr{
+	color: #d5d5d5;
+}
+.diy-tree-area{
+	background-color: #f9f9f9;
+	height: 450px;
+}
+.diy-files-area{
+	background-color: #fdfdfd;
+	height: 450px;
+}
