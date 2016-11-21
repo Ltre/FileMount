@@ -17,6 +17,7 @@ class VfsTree extends DIEntity {
         $children = $F->query($sql, array('parent_id' => $nodeId));
         foreach ($children as $k => $v) {
             $children[$k]['is_leaf'] = boolval($v['is_leaf']);
+            $children[$k]['create_time'] = date('Y-m-d H:i:s', $v['create_time']);
         }
         return $children;
     }
@@ -72,7 +73,8 @@ class VfsTree extends DIEntity {
                 'node_path' => '',//暂时留空，下步更新
                 'node_level' => $parent['node_level'] + 1,
                 'is_leaf' => $isLeaf, 
-                'file_id' => $fileId
+                'file_id' => $fileId,
+                'create_time' => time(),
             ));
             $N->update(array('node_id' => $nodeId), array('node_path' => "{$parent['node_path']},{$nodeId}"));
             $N->update(array('node_id' => $parentId), array('is_leaf' => 0));

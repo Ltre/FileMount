@@ -37,7 +37,7 @@ CREATE TABLE `fmt_node` (
   `node_level` int(11) NOT NULL DEFAULT '0' COMMENT '层级，根部为0',
   `is_leaf` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为叶子节点',
   `file_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '文件ID，默认为0(目录)',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` int(11) NOT NULL DEFAULT 0 COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`node_id`),
   KEY `idx_parent_id` (`parent_id`),
