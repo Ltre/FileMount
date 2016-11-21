@@ -13,6 +13,7 @@
 <body>
 
 <div class="mdl-layout mdl-js-layout">
+  <!-- 头部 -->
   <header class="mdl-layout__header">
     <div class="mdl-layout-icon"></div>
     <div class="mdl-layout__header-row">
@@ -21,7 +22,7 @@
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       
-	  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
         <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
           <i class="material-icons">search</i>
         </label>
@@ -37,6 +38,7 @@
       </nav>
     </div>
   </header>
+  <!-- 左侧菜单 -->
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">设定</span>
     <nav class="mdl-navigation">
@@ -66,10 +68,15 @@
       </div>
     </div>
 
+    <!-- 主体 -->
     <div class="mdl-grid mdl-grid--no-spacing">
-      <div class="mdl-cell mdl-cell--4-col diy-tree-area">
-
-      </div>
+      <!-- 文件树 -->
+      <ul class="mdl-cell mdl-cell--4-col diy-tree-area">
+        <li class="item folder closed" data-nodeid="0" data-closed="1">
+            <button class="item-btn">顶级节点</button>
+        </li>
+      </ul>
+      <!-- 文件区 -->
       <div class="mdl-cell mdl-cell--8-col diy-files-area">
 
       </div>
@@ -128,7 +135,7 @@
         <div class="mdl-logo">Title</div>
         <ul class="mdl-mega-footer__link-list">
           <li><a href="#">Help</a></li>
-          <li><a href="#">Privacy & Terms</a></li>
+          <li><a href="#">Privacy &amp; Terms</a></li>
         </ul>
       </div>
 
@@ -136,6 +143,8 @@
   </main>
 
 </div>
+
+<script type="text/javascript" src="/res/biz/explorer/explorer-start.js"></script>
 
 </body>
 </html>
