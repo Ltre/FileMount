@@ -6,7 +6,7 @@ Apache HP PC in wamp 3:
 	<Directory  "e:/InstalledApp/Zend/Apache2/htdocs/FileMount/">
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
-		Require local
+		Require all granted
 	</Directory>
 </VirtualHost>
 
@@ -32,7 +32,7 @@ Apache Company PC in wamp 3:
     <Directory  "d:/SERV_WORKSPACE/pub/FileMount/">
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
-        Require local
+        Require all granted
     </Directory>
 </VirtualHost>
 
