@@ -55,7 +55,7 @@ if (in_array($hostname, array(
         static $port = 3306;
         static $db = 'filemount';
         static $user = 'filemount';
-        static $pwd = '71f17c2521448e961c4c62c2111f7f391e3b61a1';//m+s
+        static $pwd = 'RQwYfCnHCadFmSIc';
         static $table_prefix = 'fmt_';//表前缀
     }
     class DIMMCConfig {
