@@ -16,7 +16,7 @@ rm -f -r file.larele.com.trash/
 
 
 # pull方式更新
-#（前置命令：cd /home/wwwsrc; git clone https://github.com/Ltre/FileMount.git ）
+#（前置命令：cd /home/wwwsrc; git clone https://github.com/Ltre/FileMount.git; mkdir /home/wwwroot/file.larele.com; mkdir /home/wwwroot/file.larele.com/core; mkdir /home/wwwroot/file.larele.com/core/data ）
 
 
 cd /home/wwwsrc/FileMount
